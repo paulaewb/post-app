@@ -1,11 +1,12 @@
 "use client"
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { usePosts } from "@/context/PostContext";
 import PostCard from "@/components/PostCard";
 import localforage from 'localforage';
 
 function HomePage() {
   const { posts, loadPosts } = usePosts();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Check if data is available in local storage
@@ -19,20 +20,21 @@ function HomePage() {
       }
     }).catch((error) => {
       console.error('Error loading posts from local storage:', error);
-      // If error occurs, load from API
-      loadPosts();
+      // If error occurs, set the error state
+      setError(error);
     });
   }, []);
 
   return (
     <div style={{ margin: '20%' }}>
-      {
-        posts.map(post => (
-          <PostCard post={post} key={post.id}></PostCard>
-        ))
-      }
+      {error && (
+        <p>Error loading posts. Please try again later.</p>
+      )}
+      {!error && posts.map(post => (
+        <PostCard post={post} key={post.id}></PostCard>
+      ))}
     </div>
-  )
+  );
 }
 
 export default HomePage;
