@@ -18,12 +18,12 @@ export async function GET(){
 
 export async function POST(request: Request){
     try {
-        const {userId, title, body} = await request.json();
+        const {userId, title, content} = await request.json();
         const newPost = await prisma.post.create({
         data:{
             userId,
             title,
-            body
+            content
         },
     });
 

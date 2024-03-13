@@ -10,7 +10,7 @@ function HomePage() {
     loadPosts()
   }, []);
   return(
-    <div>
+    <div style={{ margin: '20%' }}>
       {
         posts.map(post => (
           <PostCard post= {post} key = {post.id}></PostCard>

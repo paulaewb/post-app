@@ -13,7 +13,7 @@ datasource db {
 model Post{
   id Int @id @default(autoincrement())
   title String
-  body String?
+  content String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user User @relation(fields: [userId], references: [id])

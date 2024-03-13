@@ -9,7 +9,7 @@ function PostCard({post,}:{post: Post}) {
     <div key= {post.id} className = "bg-slate-400 p-4 my-2 flex justify-between">
     <div>
     <h1 className="text-2xl font-bold">{post.title}</h1>
-    <p>{post.body}</p>
+    <p>{post.content}</p>
     </div>
     <div className="flex gap-x-2">
         <button onClick={async() => {
